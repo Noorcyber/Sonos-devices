@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# Function to display the design
+display_design() {
+    cat << "EOF"
+
+ _____                            _   __ _  _  _             
+/  ___|                          | | / /(_)| || |            
+\ `--.   ___   _ __    ___   ___ | |/ /  _ | || |  ___  _ __ 
+ `--. \ / _ \ | '_ \  / _ \ / __||    \ | || || | / _ \| '__|
+/\__/ /| (_) || | | || (_) |\__ \| |\  \| || || ||  __/| |   
+\____/  \___/ |_| |_| \___/ |___/\_| \_/|_||_||_| \___||_|   
+                                                                                                                                                                
+By Noor Shaheed, Datto, Kaseya. 02/15/2024
+Sonos Device Discovery Tool
+----------------------------
+EOF
+}
+
+# Function to discover Sonos devices
+discover_sonos_devices() {
+    echo "Discovering Sonos devices..."
+    logread | grep "34:7E:5C|38:42:0B|48:A6:B8|54:2A:1B|5C:AA:FD|74:CA:60|78:28:CA|80:4A:F2|94:9F:3E|EA:BE:A7|B8:E9:37|C4:38:75|F0:F6:C1|00:04:3C|00:0E:58"
+    if [ -z "$sonos_logs" ]; then
+        echo "No devices found."
+    else
+        echo "$sonos_logs"
+    fi
+}
+# Main function
+main() {
+    display_design
+    discover_sonos_devices
+}
+
+# Call the main function
+main
